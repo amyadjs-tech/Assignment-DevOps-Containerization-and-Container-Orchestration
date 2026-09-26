@@ -79,7 +79,7 @@ You need to fork the repository present in above picture into your own GitHub ac
 
 <img width="1917" height="967" alt="image" src="https://github.com/user-attachments/assets/99d6a6eb-daea-45b1-a053-88b877cd9749" />
 
-Then clone the repository in to your local system like below example:
+Then clone the repository into your local system like below example and the same is shown in below picture:
 
 ```bash
 git clone https://github.com/amyadjs-tech/StreamingApp.git
@@ -101,6 +101,9 @@ git remote -v
 You should see your repository.
 
 ---
+
+<img width="995" height="742" alt="1 1" src="https://github.com/user-attachments/assets/238e3af0-f1f5-4a12-8362-60135d7f7683" />
+
 
 # STEP 2 — Understand the Dockerfiles
 
