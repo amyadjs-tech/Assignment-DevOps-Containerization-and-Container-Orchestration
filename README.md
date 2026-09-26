@@ -137,18 +137,19 @@ The assignment requires one image for each component.
 For the detailed assignment, the example naming is:
 
 ```bash
-docker build -t YOUR_USERNAME/streaming-auth:1.0.0 backend/authService
+docker build -t amyadjs-tech/streaming-frontend:1.0.0 ./frontend
 
-docker build -t YOUR_USERNAME/streaming-stream:1.0.0 \
+docker build -t amyadjs-tech/streaming-auth:1.0.0 backend/authService
+
+docker build -t amyadjs-tech/streaming-stream:1.0.0 \
   -f backend/streamingService/Dockerfile backend
 
-docker build -t YOUR_USERNAME/streaming-admin:1.0.0 \
+docker build -t amyadjs-tech/streaming-admin:1.0.0 \
   -f backend/adminService/Dockerfile backend
 
-docker build -t YOUR_USERNAME/streaming-chat:1.0.0 \
+docker build -t amyadjs-tech/streaming-chat:1.0.0 \
   -f backend/chatService/Dockerfile backend
 
-docker build -t YOUR_USERNAME/streaming-frontend:1.0.0 frontend
 ```
 
 Check:
@@ -160,6 +161,11 @@ docker images
 You should have five images.
 
 ---
+
+The STEP 3 is shown in below pictures
+
+<img width="1917" height="1021" alt="5" src="https://github.com/user-attachments/assets/e777a173-6e5b-49f1-a11f-e64aad1b46e8" />
+
 
 # STEP 4 — Push Images
 
