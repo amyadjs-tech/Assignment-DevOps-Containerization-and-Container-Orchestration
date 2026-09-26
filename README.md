@@ -617,25 +617,95 @@ The step-10 is shown in below 7-pictures
 
 # STEP 11 — Create Kubernetes Namespace
 
-Create a namespace:
+Here we create a separate Kubernetes namespace called `streaming`** so that the StreamingApp resources can be deployed into that namespace.
+
+### 1. Create the namespace
+
+Run:
 
 ```bash
 kubectl create namespace streaming
 ```
 
-Check:
+Expected:
+
+```text
+namespace/streaming created
+```
+
+### 2. Verify it
 
 ```bash
 kubectl get namespaces
 ```
 
-We'll deploy the application into:
+You should see:
 
 ```text
-streaming
+NAME              STATUS   AGE
+default           Active   ...
+kube-system       Active   ...
+kube-public       Active   ...
+kube-node-lease   Active   ...
+streaming         Active   ...
 ```
 
----
+### 3. Verify specifically
+
+```bash
+kubectl get namespace streaming
+```
+
+Expected:
+
+```text
+NAME        STATUS   AGE
+streaming   Active   ...
+```
+
+### Why are we creating `streaming`?
+
+Your application will have multiple Kubernetes resources:
+
+```text
+streaming namespace
+│
+├── auth Deployment
+├── auth Service
+├── streaming Deployment
+├── streaming Service
+├── admin Deployment
+├── admin Service
+├── chat Deployment
+├── chat Service
+├── frontend Deployment
+├── frontend Service
+├── MongoDB
+├── ConfigMap
+├── Secret
+└── Ingress
+```
+
+Keeping them under `streaming` makes the application resources easier to manage separately from Kubernetes system resources.
+
+For example:
+
+```bash
+kubectl get pods -n streaming
+```
+
+```bash
+kubectl get services -n streaming
+```
+
+```bash
+kubectl get deployments -n streaming
+```
+
+The step-11 is shown in below picture
+
+<img width="1917" height="977" alt="image" src="https://github.com/user-attachments/assets/0d7b75d8-96ad-41fe-922b-a30b2ae105ad" />
+
 
 # STEP 12 — Create Kubernetes Deployments
 
