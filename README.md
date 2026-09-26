@@ -367,23 +367,11 @@ docker images
 
 You should now see **both Docker Hub and ECR names** for the same images, for example:
 
-```text
-REPOSITORY                                                    TAG
-amyadjsdocker/streaming-auth                                  1.0.0
-939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-auth   1.0.0
-
-amyadjsdocker/streaming-stream                                1.0.0
-939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-stream 1.0.0
-
-amyadjsdocker/streaming-admin                                 1.0.0
-939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-admin  1.0.0
-
-amyadjsdocker/streaming-chat                                  1.0.0
-939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-chat   1.0.0
-
-amyadjsdocker/streaming-frontend                              1.0.0
-939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend 1.0.0
 ```
+<img width="1917" height="1026" alt="32" src="https://github.com/user-attachments/assets/2f12387f-39c8-4ee3-b55a-5b52f815e3a4" />
+
+<img width="1917" height="1021" alt="33" src="https://github.com/user-attachments/assets/ff2bba9f-1920-4387-8342-b846ddbdd2ae" />
+
 <img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/9f395116-a465-4977-b2fc-2c89af4a9d32" />
 
 ---
