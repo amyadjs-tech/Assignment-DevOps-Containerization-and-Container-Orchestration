@@ -75,7 +75,7 @@ You need to fork it into your own GitHub account.
 For example:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/StreamingApp.git
+git clone https://github.com/amyadjs-tech/StreamingApp.git
 cd StreamingApp
 ```
 
