@@ -456,6 +456,13 @@ streaming-frontend
 
 And each should have the `1.0.0` image tag.
 
+Step-9 is shown in below attached pictures
+
+<img width="1917" height="1021" alt="34" src="https://github.com/user-attachments/assets/35b8f388-aa29-4629-a48e-baaa8db58f24" />
+
+<img width="1917" height="1021" alt="35" src="https://github.com/user-attachments/assets/23540247-ce84-49ce-b97a-eb4781459ddc" />
+
+
 # STEP 10 — Create EKS Cluster
 
 The main project requires an EKS cluster and says it can be provisioned with `eksctl` or an equivalent tool.
