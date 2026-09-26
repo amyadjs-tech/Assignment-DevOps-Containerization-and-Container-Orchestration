@@ -289,6 +289,8 @@ The step 6 is shown in below pictures
 
 <img width="1917" height="1022" alt="image" src="https://github.com/user-attachments/assets/86d7a430-0370-47e1-809f-0d26399b8849" />
 
+<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/e26b07bc-a1db-4232-b146-6a48ce8203a6" />
+
 <img width="1917" height="932" alt="27" src="https://github.com/user-attachments/assets/fc4b3fcc-9abf-4f08-aa01-66d5b14a4b96" />
 
 ---
