@@ -429,12 +429,6 @@ docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend:1.0.
 
 After the pushes finish:
 
-```bash
-aws ecr describe-images \
-  --repository-name streaming-auth \
-  --region us-east-1
-```
-
 You can also check all repositories at once:
 
 ```bash
@@ -462,6 +456,7 @@ Step-9 is shown in below attached pictures
 
 <img width="1917" height="1021" alt="35" src="https://github.com/user-attachments/assets/23540247-ce84-49ce-b97a-eb4781459ddc" />
 
+<img width="1917" height="291" alt="image" src="https://github.com/user-attachments/assets/158114b6-bb70-465c-9e92-6a3e4849ee73" />
 
 # STEP 10 — Create EKS Cluster
 
