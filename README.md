@@ -279,6 +279,15 @@ Verify:
 ```bash
 aws ecr describe-repositories --region us-east-1
 ```
+The step 6 is shown in below pictures
+
+<img width="1917" height="1020" alt="24" src="https://github.com/user-attachments/assets/83adea41-8487-4ea6-98ac-78b1a714bad0" />
+
+<img width="1917" height="1021" alt="25" src="https://github.com/user-attachments/assets/3a259de3-d6c7-4577-95c1-88229e3b5fcb" />
+
+<img width="1917" height="387" alt="26" src="https://github.com/user-attachments/assets/7c9e32c3-b2e0-48a3-9d55-68264ba3678d" />
+
+<img width="1917" height="932" alt="27" src="https://github.com/user-attachments/assets/fc4b3fcc-9abf-4f08-aa01-66d5b14a4b96" />
 
 ---
 
