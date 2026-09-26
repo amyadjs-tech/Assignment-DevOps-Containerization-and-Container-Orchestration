@@ -460,9 +460,35 @@ Step-9 is shown in below attached pictures
 
 # STEP 10 — Create EKS Cluster
 
-The main project requires an EKS cluster and says it can be provisioned with `eksctl` or an equivalent tool.
+Yes. **Step 10 is the point where you create the AWS EKS cluster** for your StreamingApp. The main graded project requires an EKS cluster and allows `eksctl` for provisioning. 
 
-Since you've already been working with `eksctl`, you can use:
+Since you're using `us-east-1`, run the following.
+
+### 1. Check prerequisites
+
+```bash
+aws sts get-caller-identity
+```
+
+This should show your AWS account.
+
+Check `eksctl`:
+
+```bash
+eksctl version
+```
+
+Check `kubectl`:
+
+```bash
+kubectl version --client
+```
+
+---
+
+### 2. Create the EKS cluster
+
+Run:
 
 ```bash
 eksctl create cluster \
@@ -474,20 +500,43 @@ eksctl create cluster \
   --managed
 ```
 
-This creates:
+### What this creates
+
+Conceptually:
 
 ```text
-EKS Cluster
-│
-├── Node 1
-├── Node 2
-└── Node 3
+                 AWS EKS
+                    │
+          ┌─────────┴─────────┐
+          │   Control Plane   │
+          │   (AWS managed)   │
+          └─────────┬─────────┘
+                    │
+        ┌───────────┼───────────┐
+        │           │           │
+     Node 1       Node 2      Node 3
+    t3.medium    t3.medium   t3.medium
 ```
 
-Check:
+You **don't manually create the control-plane node**. AWS manages the EKS control plane. The `--nodes 3` option creates three worker nodes in the managed node group.
+
+The cluster creation can take several minutes.
+
+---
+
+### 3. Verify the cluster
+
+After creation completes:
 
 ```bash
 eksctl get cluster
+```
+
+You should see something similar to:
+
+```text
+NAME                REGION
+streaming-cluster   us-east-1
 ```
 
 Then:
@@ -499,13 +548,72 @@ kubectl get nodes
 Expected:
 
 ```text
-NAME          STATUS   ROLES
-node-xxxxx    Ready    <none>
-node-yyyyy    Ready    <none>
-node-zzzzz    Ready    <none>
+NAME                            STATUS   ROLES    AGE   VERSION
+ip-xxx-xxx-xxx-xxx...           Ready    <none>   ...   ...
+ip-xxx-xxx-xxx-xxx...           Ready    <none>   ...   ...
+ip-xxx-xxx-xxx-xxx...           Ready    <none>   ...   ...
 ```
 
+You can also run:
+
+```bash
+kubectl get nodes -o wide
+```
+
+to see the EC2 instance details.
+
+### 4. Verify Kubernetes connectivity
+
+Run:
+
+```bash
+kubectl get pods -A
+```
+
+You should see Kubernetes system pods running in namespaces such as `kube-system`.
+
 ---
+
+### Your project flow now
+
+You've reached:
+
+```text
+GitHub
+   ↓
+Docker Images
+   ↓
+Docker Hub ✅
+   ↓
+ECR ✅
+   ↓
+EKS ← YOU ARE HERE
+   ↓
+Helm
+   ↓
+StreamingApp
+```
+
+The detailed assignment then moves into **Kubernetes/Helm deployment**, while the main graded project requires the MERN stack to be deployed on EKS and validated under scaling operations.  
+
+**Before you run the cluster creation command:** make sure you're comfortable with the AWS cost implications. An EKS cluster plus 3 `t3.medium` nodes and associated resources can incur charges while running. Once your project testing/submission is complete, you can delete the cluster.
+
+The step-10 is shown in below 7-pictures
+
+<img width="1917" height="1017" alt="image" src="https://github.com/user-attachments/assets/67a84cf3-e197-4bac-8ed4-295db67e1e53" />
+
+<img width="1917" height="1025" alt="image" src="https://github.com/user-attachments/assets/e84b6d7d-f421-4199-8709-6458e028dfae" />
+
+<img width="1917" height="91" alt="image" src="https://github.com/user-attachments/assets/e51c5515-178d-45f1-8181-ac99d09777f1" />
+
+<img width="1917" height="967" alt="image" src="https://github.com/user-attachments/assets/1f2afb7b-09df-492b-b9f3-5e0d17c83690" />
+
+<img width="1917" height="135" alt="image" src="https://github.com/user-attachments/assets/3b38f1d9-386a-4f1a-b4d7-59fc73b704e8" />
+
+<img width="1917" height="102" alt="image" src="https://github.com/user-attachments/assets/154e8a33-d2df-4316-91f6-c23d26b6da86" />
+
+<img width="1917" height="267" alt="image" src="https://github.com/user-attachments/assets/13bf77e9-c257-4f9a-aa1a-1acc30db6c41" />
+
 
 # STEP 11 — Create Kubernetes Namespace
 
