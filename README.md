@@ -139,16 +139,13 @@ For the detailed assignment, the example naming is:
 ```bash
 docker build -t amyadjs-tech/streaming-frontend:1.0.0 ./frontend
 
-docker build -t amyadjs-tech/streaming-auth:1.0.0 backend/authService
+docker build -t amyadjs-tech/streaming-auth:1.0.0 ./backend/authService
 
-docker build -t amyadjs-tech/streaming-stream:1.0.0 \
-  -f backend/streamingService/Dockerfile backend
+docker build -t amyadjs-tech/streaming-stream:1.0.0 -f backend/streamingService/Dockerfile ./backend
 
-docker build -t amyadjs-tech/streaming-admin:1.0.0 \
-  -f backend/adminService/Dockerfile backend
+docker build -t amyadjs-tech/streaming-admin:1.0.0 -f backend/adminService/Dockerfile ./backend
 
-docker build -t amyadjs-tech/streaming-chat:1.0.0 \
-  -f backend/chatService/Dockerfile backend
+docker build -t amyadjs-tech/streaming-chat:1.0.0 -f backend/chatService/Dockerfile ./backend
 
 ```
 
@@ -165,6 +162,14 @@ You should have five images.
 The STEP 3 is shown in below pictures
 
 <img width="1917" height="1021" alt="5" src="https://github.com/user-attachments/assets/e777a173-6e5b-49f1-a11f-e64aad1b46e8" />
+
+<img width="1917" height="1015" alt="11" src="https://github.com/user-attachments/assets/50e67d64-01f5-42df-bd62-add0d02ff841" />
+
+<img width="1917" height="1030" alt="10" src="https://github.com/user-attachments/assets/6f19f3e6-98cf-432b-b355-b9d09e49d578" />
+
+<img width="1917" height="1020" alt="9" src="https://github.com/user-attachments/assets/0ae6de33-d3ed-4df7-a264-00bf5c1233bd" />
+
+<img width="1917" height="980" alt="8" src="https://github.com/user-attachments/assets/fc74e431-4955-4749-9209-1391abd9cb95" />
 
 
 # STEP 4 — Push Images
