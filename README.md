@@ -367,14 +367,11 @@ docker images
 
 You should now see **both Docker Hub and ECR names** for the same images, for example:
 
-```
 <img width="1917" height="1026" alt="32" src="https://github.com/user-attachments/assets/2f12387f-39c8-4ee3-b55a-5b52f815e3a4" />
 
 <img width="1917" height="1021" alt="33" src="https://github.com/user-attachments/assets/ff2bba9f-1920-4387-8342-b846ddbdd2ae" />
 
 <img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/9f395116-a465-4977-b2fc-2c89af4a9d32" />
-
----
 
 # STEP 9 — Push Images to ECR
 
