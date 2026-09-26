@@ -202,6 +202,9 @@ Check:
 aws --version
 ```
 
+<img width="1917" height="297" alt="21" src="https://github.com/user-attachments/assets/b439668a-0564-4c7c-b79e-5e814777fbe9" />
+
+
 Configure:
 
 ```bash
@@ -229,7 +232,9 @@ Verify:
 aws sts get-caller-identity
 ```
 
-If this returns your AWS account/user information, AWS CLI authentication is working.
+If this returns your AWS account/user information, AWS CLI authentication is working as shown in picture below.
+
+<img width="1917" height="196" alt="22" src="https://github.com/user-attachments/assets/94abe9a9-0ff3-4540-a777-b7f44a2d8598" />
 
 The assignment explicitly requires AWS CLI configuration using your AWS credentials.
 
