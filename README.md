@@ -384,6 +384,7 @@ amyadjsdocker/streaming-chat                                  1.0.0
 amyadjsdocker/streaming-frontend                              1.0.0
 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend 1.0.0
 ```
+<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/9f395116-a465-4977-b2fc-2c89af4a9d32" />
 
 ---
 
