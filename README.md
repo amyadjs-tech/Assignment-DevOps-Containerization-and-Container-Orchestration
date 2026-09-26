@@ -79,7 +79,7 @@ You need to fork the repository present in above picture into your own GitHub ac
 
 <img width="1917" height="967" alt="image" src="https://github.com/user-attachments/assets/99d6a6eb-daea-45b1-a053-88b877cd9749" />
 
-For example:
+Then clone the repository in to your local system like below example:
 
 ```bash
 git clone https://github.com/amyadjs-tech/StreamingApp.git
