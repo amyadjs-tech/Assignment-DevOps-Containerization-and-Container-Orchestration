@@ -302,18 +302,13 @@ Run:
 ```bash
 aws ecr get-login-password --region us-east-1 | \
 docker login --username AWS --password-stdin \
-ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
+939365917679.dkr.ecr.us-east-1.amazonaws.com
 ```
 
-Replace:
+The step 7 is shown in below picture
 
-```text
-ACCOUNT_ID
-```
+<img width="1917" height="645" alt="image" src="https://github.com/user-attachments/assets/23c8b5a6-d2ae-4cb4-b88a-5b40c227d237" />
 
-with your AWS account ID.
-
----
 
 # STEP 8 — Tag Images for ECR
 
