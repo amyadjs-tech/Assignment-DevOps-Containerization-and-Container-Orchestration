@@ -312,14 +312,78 @@ The step 7 is shown in below picture
 
 # STEP 8 — Tag Images for ECR
 
-Example:
+---
+Here you are taking the images you already built/tagged for Docker Hub and creating an **ECR tag** for each one.
+
+Your values are:
+
+* Docker Hub username: `amyadjsdocker`
+* AWS Account ID: `939365917679`
+* Region: `us-east-1`
+* ECR registry: `939365917679.dkr.ecr.us-east-1.amazonaws.com`
+
+### 1. Tag Auth
 
 ```bash
-docker tag YOUR_USERNAME/streaming-auth:1.0.0 \
-ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
+docker tag amyadjsdocker/streaming-auth:1.0.0 \
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
 ```
 
-Repeat for all five images.
+### 2. Tag Streaming
+
+```bash
+docker tag amyadjsdocker/streaming-stream:1.0.0 \
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-stream:1.0.0
+```
+
+### 3. Tag Admin
+
+```bash
+docker tag amyadjsdocker/streaming-admin:1.0.0 \
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-admin:1.0.0
+```
+
+### 4. Tag Chat
+
+```bash
+docker tag amyadjsdocker/streaming-chat:1.0.0 \
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-chat:1.0.0
+```
+
+### 5. Tag Frontend
+
+```bash
+docker tag amyadjsdocker/streaming-frontend:1.0.0 \
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend:1.0.0
+```
+
+### 6. Verify the tags
+
+Run:
+
+```bash
+docker images
+```
+
+You should now see **both Docker Hub and ECR names** for the same images, for example:
+
+```text
+REPOSITORY                                                    TAG
+amyadjsdocker/streaming-auth                                  1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-auth   1.0.0
+
+amyadjsdocker/streaming-stream                                1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-stream 1.0.0
+
+amyadjsdocker/streaming-admin                                 1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-admin  1.0.0
+
+amyadjsdocker/streaming-chat                                  1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-chat   1.0.0
+
+amyadjsdocker/streaming-frontend                              1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend 1.0.0
+```
 
 ---
 
