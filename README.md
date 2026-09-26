@@ -107,7 +107,7 @@ You should see your repository.
 
 # STEP 2 — Understand the Dockerfiles
 
-The detailed assignment says the five services already have Dockerfiles and that you should reuse them rather than rewrite the application.
+The detailed assignment says the five services already have Dockerfiles and that you should reuse them rather than rewrite the application. And the same is shown in below picture.
 
 Check:
 
@@ -126,6 +126,9 @@ frontend
 ```
 
 ---
+
+<img width="1041" height="857" alt="1 2" src="https://github.com/user-attachments/assets/884efb99-4240-4c86-bc1b-2e9e2ff2fcf4" />
+
 
 # STEP 3 — Build the Five Docker Images
 
