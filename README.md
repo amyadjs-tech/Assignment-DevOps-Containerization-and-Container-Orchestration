@@ -375,25 +375,86 @@ You should now see **both Docker Hub and ECR names** for the same images, for ex
 
 # STEP 9 — Push Images to ECR
 
-Example:
-
-```bash
-docker push \
-ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
-```
-
-Repeat for:
+AWS account ID:
 
 ```text
+939365917679
+```
+
+### 1. Push Auth
+
+```bash
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
+```
+
+### 2. Push Streaming
+
+```bash
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-stream:1.0.0
+```
+
+### 3. Push Admin
+
+```bash
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-admin:1.0.0
+```
+
+### 4. Push Chat
+
+```bash
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-chat:1.0.0
+```
+
+### 5. Push Frontend
+
+```bash
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend:1.0.0
+```
+
+### Or run all five together
+
+```bash
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
+
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-stream:1.0.0
+
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-admin:1.0.0
+
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-chat:1.0.0
+
+docker push 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend:1.0.0
+```
+
+### Verify all 5 are in ECR
+
+After the pushes finish:
+
+```bash
+aws ecr describe-images \
+  --repository-name streaming-auth \
+  --region us-east-1
+```
+
+You can also check all repositories at once:
+
+```bash
+aws ecr describe-repositories \
+  --region us-east-1 \
+  --query 'repositories[].repositoryName' \
+  --output table
+```
+
+You should have:
+
+```text
+streaming-auth
 streaming-stream
 streaming-admin
 streaming-chat
 streaming-frontend
 ```
 
-Now ECR contains your application images.
-
----
+And each should have the `1.0.0` image tag.
 
 # STEP 10 — Create EKS Cluster
 
