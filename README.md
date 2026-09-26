@@ -1,8 +1,6 @@
 # Assignment-DevOps-Containerization-and-Container-Orchestration
 DevOps: Containerization and Container Orchestration
 
-Sure — here is the complete `README.md` content so you can copy it directly into your GitHub repository.
-
 ````markdown
 # 🚀 Complete Step-by-Step Plan
 
