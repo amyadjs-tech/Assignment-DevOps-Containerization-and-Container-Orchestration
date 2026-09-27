@@ -1411,6 +1411,10 @@ chat         ...
 frontend     ...
 streaming    ...
 
+The step-17.1 is shown in below pictures
+
+<img width="1917" height="167" alt="66" src="https://github.com/user-attachments/assets/577a9a31-2a91-4a1e-bba6-a1dc793b6c6a" />
+
 Step 17.2 — Check the current Deployment YAML
 
 Let's start with auth.
@@ -1424,6 +1428,11 @@ This will show your current configuration.
 You can also save it if needed:
 
 kubectl get deployment auth -n streaming -o yaml > auth-current.yaml
+
+<img width="1917" height="1020" alt="67" src="https://github.com/user-attachments/assets/b2ad4d4d-bbab-4f73-b0e7-80828c89f602" />
+
+<img width="1917" height="1025" alt="image" src="https://github.com/user-attachments/assets/149c6d88-ce7a-470c-9ab9-e3b513ef9104" />
+
 
 Step 17.3 — Find the application's health endpoint
 
@@ -1478,7 +1487,6 @@ Frontend
 grep -RniE "health|healthcheck|/health|/healthz" frontend
 
 <img width="1917" height="1020" alt="63" src="https://github.com/user-attachments/assets/5393516e-72bd-4518-9195-b2cba5dd4d7f" />
-
 
 Step 17.5 — Understand what we are looking for
 
