@@ -1392,39 +1392,129 @@ The step-16 is shown in below pictures
 
 # STEP 17 — Add Readiness and Liveness Probes
 
-Every Deployment should have:
+Step 17.1 — Check your current Deployments
 
-```text
-readinessProbe
-livenessProbe
-```
+From:
 
-The assignment specifically requires these probes on each Deployment's HTTP port.
+cd ~/StreamingApp/k8s
 
-Conceptually:
+run:
 
-```text
+kubectl get deployments -n streaming
+
+You should see something like:
+
+NAME         READY   UP-TO-DATE   AVAILABLE
+admin        ...
+auth         ...
+chat         ...
+frontend     ...
+streaming    ...
+Step 17.2 — Check the current Deployment YAML
+
+Let's start with auth.
+
+Run:
+
+kubectl get deployment auth -n streaming -o yaml
+
+This will show your current configuration.
+
+You can also save it if needed:
+
+kubectl get deployment auth -n streaming -o yaml > auth-current.yaml
+Step 17.3 — Find the application's health endpoint
+
+Before adding:
+
+readinessProbe:
+livenessProbe:
+
+we need to know whether your application has something such as:
+
+/health
+
+or:
+
+/healthz
+
+or another endpoint.
+
+Because this is your actual application, let's inspect the source code rather than assuming.
+
+From the project root:
+
+cd ~/StreamingApp
+
+Run:
+
+grep -RniE "health|healthcheck|/health|/healthz" backend/authService
+
+If you get output showing something like:
+
+app.get('/health', ...)
+
+then we know /health is available.
+
+If there is no health endpoint, don't add a guessed /health probe yet.
+
+Step 17.4 — Check the other services
+
+Run these one by one:
+
+Streaming
+grep -RniE "health|healthcheck|/health|/healthz" backend/streamingService
+Admin
+grep -RniE "health|healthcheck|/health|/healthz" backend/adminService
+Chat
+grep -RniE "health|healthcheck|/health|/healthz" backend/chatService
+Frontend
+grep -RniE "health|healthcheck|/health|/healthz" frontend
+Step 17.5 — Understand what we are looking for
+
+Suppose Auth contains:
+
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
+
+Then its probes can use:
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 3001
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 3001
+  initialDelaySeconds: 30
+  periodSeconds: 20
+
+The meaning is:
+
+Readiness
+
 Pod starts
-   │
-   ▼
-Liveness Probe
-   │
-   ├── healthy → keep running
-   │
-   └── unhealthy → restart
-```
+   ↓
+/health returns 200?
+   ↓
+YES → Pod receives traffic
+NO  → Pod does not receive traffic
 
-And:
+Liveness
 
-```text
-Readiness Probe
-   │
-   ├── ready → receive traffic
-   │
-   └── not ready → don't receive traffic
-```
+Pod is running
+   ↓
+/health returns successfully?
+   ↓
+YES → keep Pod running
+NO  → Kubernetes restarts container
 
----
+
 
 # STEP 18 — Create Helm Chart
 
