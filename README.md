@@ -1585,48 +1585,48 @@ values.yaml
 For example:
 
 ```yaml
-services:
+namespace: streaming
 
-  auth:
-    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/streaming-auth
-    tag: "1.0.0"
-    replicas: 2
-    port: 3001
+images:
+  auth: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
+  streaming: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-stream:1.0.0
+  admin: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-admin:1.0.0
+  chat: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-chat:1.0.0
+  frontend: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend:1.0.0
 
-  streaming:
-    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/streaming-stream
-    tag: "1.0.0"
-    replicas: 2
-    port: 3002
-
-  admin:
-    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/streaming-admin
-    tag: "1.0.0"
-    replicas: 2
-    port: 3003
-
-  chat:
-    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/streaming-chat
-    tag: "1.0.0"
-    replicas: 2
-    port: 3004
-
-  frontend:
-    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend
-    tag: "1.0.0"
-    replicas: 2
-    port: 80
+replicas:
+  auth: 2
+  streaming: 2
+  admin: 2
+  chat: 2
+  frontend: 2
 
 mongo:
-  storageSize: 5Gi
+  image: mongo:latest
+  port: 27017
+  database: streamingapp
 
-ingress:
-  host: streamingapp.local
+services:
+  auth:
+    port: 3001
+  streaming:
+    port: 3002
+  admin:
+    port: 3003
+  chat:
+    port: 3004
+  frontend:
+    port: 80
 ```
 
 The assignment's example also uses configurable image tags, replicas, ports, MongoDB storage and Ingress host.
 
 ---
+
+The step-19 is shown in below pictures
+
+<img width="1917" height="932" alt="image" src="https://github.com/user-attachments/assets/6cda1f31-01d7-4fb6-b2e8-60619b9d2d27" />
+
 
 # STEP 20 — Create Ingress
 
