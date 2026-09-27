@@ -1536,6 +1536,9 @@ NO  → Kubernetes restarts container
 
 <img width="1917" height="1021" alt="65" src="https://github.com/user-attachments/assets/3b4ae761-b42a-473e-bcd4-7717a71dae53" />
 
+<img width="1917" height="841" alt="image" src="https://github.com/user-attachments/assets/99862279-24dc-4ed9-ae3a-8fb3d49e37ba" />
+
+
 # STEP 18 — Create Helm Chart
 
 Now we convert the Kubernetes manifests into Helm templates.
