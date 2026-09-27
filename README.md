@@ -1810,6 +1810,8 @@ This is the correct Step 21 flow for your assignment.
 
 <img width="1917" height="1022" alt="image" src="https://github.com/user-attachments/assets/20307189-728a-424e-ad57-537752bc6eeb" />
 
+<img width="1917" height="232" alt="image" src="https://github.com/user-attachments/assets/0b37d582-a9ea-45c3-89ce-ebecb0537dfd" />
+
 
 
 # STEP 22 — Verify Kubernetes
