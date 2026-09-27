@@ -1573,6 +1573,15 @@ The step-18 is shown in below picture
 
 <img width="907" height="612" alt="image" src="https://github.com/user-attachments/assets/cba65c81-1301-45bf-9ec5-9c852454649f" />
 
+<img width="1917" height="1027" alt="image" src="https://github.com/user-attachments/assets/9443b2a4-aa88-4bdb-8dd8-23189b2d8c0b" />
+
+<img width="1917" height="1016" alt="image" src="https://github.com/user-attachments/assets/7a4512e1-4929-4619-a92c-4df6b319158a" />
+
+<img width="1917" height="1025" alt="image" src="https://github.com/user-attachments/assets/7f22ccad-5fab-4b45-99df-14f7cc4a457d" />
+
+<img width="1917" height="1025" alt="image" src="https://github.com/user-attachments/assets/d25f771f-fb4e-4734-9b53-f8d44d8f587d" />
+
+
 
 # STEP 19 — Create values.yaml
 
