@@ -1569,6 +1569,11 @@ This structure comes directly from the assignment guide.
 
 ---
 
+The step-18 is shown in below picture
+
+<img width="907" height="612" alt="image" src="https://github.com/user-attachments/assets/cba65c81-1301-45bf-9ec5-9c852454649f" />
+
+
 # STEP 19 — Create values.yaml
 
 Instead of hardcoding values in Kubernetes YAML, we'll put configurable values into:
