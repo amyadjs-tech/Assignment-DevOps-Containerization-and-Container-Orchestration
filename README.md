@@ -1241,29 +1241,145 @@ The step-15 is shown in below picture
 
 # STEP 16 — Deploy MongoDB
 
-The assignment requires MongoDB with persistent storage if you deploy MongoDB inside Kubernetes.
+For **STEP 16**, since your current ConfigMap has:
 
-The expected architecture is:
-
-```text
-MongoDB
-   │
-StatefulSet
-   │
-PVC
-   │
-Persistent Storage
+```yaml
+MONGO_HOST: mongo
 ```
 
-The MongoDB service should be reachable internally as:
+we should create a MongoDB **StatefulSet + PVC + Service** in the `streaming` namespace. The assignment guide explicitly allows MongoDB to be deployed as a StatefulSet with persistent storage. 
+
+### STEP 16.1 — Create `mongo.yaml`
+
+Create:
 
 ```text
-mongo.<namespace>.svc
+k8s/mongo.yaml
 ```
 
-The assignment explicitly specifies the StatefulSet/PVC approach.
+Use:
+
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+  namespace: streaming
+spec:
+  serviceName: mongo
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:6
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-data
+              mountPath: /data/db
+
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
 
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  namespace: streaming
+spec:
+  clusterIP: None
+  selector:
+    app: mongo
+  ports:
+    - port: 27017
+      targetPort: 27017
+```
+
+### STEP 16.2 — Apply it
+
+```bash
+kubectl apply -f mongo.yaml
+```
+
+### STEP 16.3 — Check MongoDB
+
+```bash
+kubectl get statefulset -n streaming
+```
+
+Then:
+
+```bash
+kubectl get pods -n streaming
+```
+
+You should eventually see:
+
+```text
+mongo-0    1/1    Running
+```
+
+Check the PVC:
+
+```bash
+kubectl get pvc -n streaming
+```
+
+You should see something similar to:
+
+```text
+mongo-data-mongo-0    Bound
+```
+
+### STEP 16.4 — Verify the MongoDB Service
+
+```bash
+kubectl get svc -n streaming
+```
+
+You should see:
+
+```text
+mongo
+```
+
+Your applications can then connect internally using:
+
+```text
+mongodb://mongo:27017
+```
+
+or the Kubernetes DNS name:
+
+```text
+mongo.streaming.svc
+```
+
+**Important:** Because your ConfigMap already says:
+
+```yaml
+MONGO_HOST: mongo
+```
+
+the Service name `mongo` above matches your configuration.
+
+After MongoDB is `Running` and the PVC is `Bound`, we can move to **STEP 17 — connect the five application Deployments to the ConfigMap and Secret**.
+
 
 # STEP 17 — Add Readiness and Liveness Probes
 
