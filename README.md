@@ -1166,38 +1166,78 @@ The step-14 is shown in below pictures
 
 # STEP 15 — Create Secret
 
-Sensitive values should be stored in Kubernetes Secret.
+**Step 15 is the Kubernetes Secret configuration.** Your structure is correct.
 
-The assignment specifically identifies:
+However, **do not put your real AWS access key or secret key directly into a Git-tracked YAML file**.
+
+### STEP 15 — Create Secret
+
+Create:
 
 ```text
-JWT_SECRET
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
+k8s/secret.yaml
 ```
 
-as secret configuration.
-
-Example structure:
+For now, you can use:
 
 ```yaml
 apiVersion: v1
 kind: Secret
-
 metadata:
   name: streaming-secret
-
+  namespace: streaming
 type: Opaque
-
 stringData:
   JWT_SECRET: your-secret
   AWS_ACCESS_KEY_ID: your-key
   AWS_SECRET_ACCESS_KEY: your-secret-key
 ```
 
-For a real AWS deployment, we'll improve this rather than committing actual credentials into GitHub.
+### Apply it
 
----
+```bash
+kubectl apply -f k8s/secret.yaml
+```
+
+Verify:
+
+```bash
+kubectl get secret -n streaming
+```
+
+You should see:
+
+```text
+NAME               TYPE     DATA   AGE
+streaming-secret   Opaque   3      ...
+```
+
+To inspect the Secret metadata:
+
+```bash
+kubectl describe secret streaming-secret -n streaming
+```
+
+Kubernetes will **not display the actual Secret values** in the normal `describe` output.
+
+### Important for your project
+
+Your assignment requires sensitive configuration such as `JWT_SECRET` and AWS credentials to be handled through a Kubernetes Secret. 
+
+For the actual AWS deployment, we'll make the setup safer by **not committing real credentials to GitHub**.
+
+**Next step after this: STEP 16 — MongoDB StatefulSet + Service**, because your ConfigMap currently has:
+
+```yaml
+MONGO_HOST: mongo
+```
+
+So we'll create the MongoDB service with the name `mongo` to match it.
+
+The step-15 is shown in below picture
+
+<img width="1917" height="511" alt="image" src="https://github.com/user-attachments/assets/5b646e6e-4fd6-4f47-bfa4-0226f104feb7" />
+
 
 # STEP 16 — Deploy MongoDB
 
