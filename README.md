@@ -918,41 +918,160 @@ The step-12 is shown in below pictures
 
 # STEP 13 — Create Kubernetes Services
 
-Services provide stable internal DNS names for communication between pods.
+Here we need to create five Kubernetes `ClusterIP` Services**, one for each application component. The assignment guide specifies a Deployment + Service pair for each component and says to use ClusterIP Services. 
 
-For example:
+Create these five files inside your `k8s` directory.
 
-```text
-auth-svc
-streaming-svc
-admin-svc
-chat-svc
-frontend-svc
-```
-
-The assignment specifically calls for ClusterIP Services for internal pod-to-pod communication.
-
-Example:
+### 1. `auth-service.yaml`
 
 ```yaml
 apiVersion: v1
 kind: Service
-
 metadata:
   name: auth-svc
-
+  namespace: streaming
 spec:
   type: ClusterIP
-
   selector:
     app: auth
-
   ports:
     - port: 3001
       targetPort: 3001
 ```
 
----
+### 2. `streaming-service.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: streaming-svc
+  namespace: streaming
+spec:
+  type: ClusterIP
+  selector:
+    app: streaming
+  ports:
+    - port: 3002
+      targetPort: 3002
+```
+
+### 3. `admin-service.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-svc
+  namespace: streaming
+spec:
+  type: ClusterIP
+  selector:
+    app: admin
+  ports:
+    - port: 3003
+      targetPort: 3003
+```
+
+### 4. `chat-service.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-svc
+  namespace: streaming
+spec:
+  type: ClusterIP
+  selector:
+    app: chat
+  ports:
+    - port: 3004
+      targetPort: 3004
+```
+
+### 5. `frontend-service.yaml`
+
+Your frontend container uses Nginx on port `80`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+  namespace: streaming
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+```
+
+### Apply all five
+
+From the `k8s` directory:
+
+```bash
+kubectl apply -f . -n streaming
+```
+
+### Verify
+
+```bash
+kubectl get services -n streaming
+```
+
+You should see:
+
+```text
+NAME             TYPE        CLUSTER-IP
+auth-svc         ClusterIP   ...
+streaming-svc    ClusterIP   ...
+admin-svc        ClusterIP   ...
+chat-svc         ClusterIP   ...
+frontend-svc     ClusterIP   ...
+```
+
+You can also check that the Services are connected to the Pods:
+
+```bash
+kubectl get endpoints -n streaming
+```
+
+The important relationship is:
+
+```text
+auth Deployment
+      ↓
+   app: auth
+      ↓
+ auth-svc
+      ↓
+auth Pods
+```
+
+And similarly:
+
+```text
+streaming-svc → streaming Pods
+admin-svc     → admin Pods
+chat-svc      → chat Pods
+frontend-svc  → frontend Pods
+```
+
+The guide later uses these Service names for the Ingress routing, including `/api/auth`, `/api/streaming`, `/api/admin`, `/api/chat`, and `/` for the frontend. 
+
+**Next in your sequence:** Step 14 should be the **ConfigMap and Secret**, because the assignment requires non-secret configuration in ConfigMaps and sensitive values such as JWT/AWS credentials in Secrets. 
+
+The step-13 is shown in below pictures
+
+<img width="1917" height="1025" alt="image" src="https://github.com/user-attachments/assets/36dd5e31-1d62-4ed8-82f2-bea6542cc09c" />
+
+<img width="1917" height="1026" alt="image" src="https://github.com/user-attachments/assets/b116c1ef-e65c-440e-a29e-2e6fb5e2463a" />
+
+<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/9d99c380-262e-4dfa-8615-e56809c9557e" />
 
 # STEP 14 — Create ConfigMap
 
