@@ -1380,6 +1380,15 @@ the Service name `mongo` above matches your configuration.
 
 After MongoDB is `Running` and the PVC is `Bound`, we can move to **STEP 17 — connect the five application Deployments to the ConfigMap and Secret**.
 
+The step-16 is shown in below pictures
+
+<img width="1917" height="1022" alt="60" src="https://github.com/user-attachments/assets/fc773653-53bb-4610-bd0d-0c4c376cdb2f" />
+
+<img width="1917" height="1022" alt="61" src="https://github.com/user-attachments/assets/20a5481e-6fa1-4dd4-b1ab-400b9d253e78" />
+
+<img width="1917" height="234" alt="58" src="https://github.com/user-attachments/assets/965a4be4-ccbb-4040-9f7d-81044ad76f0e" />
+
+<img width="1917" height="512" alt="59" src="https://github.com/user-attachments/assets/093cc161-d309-4e28-bbad-d32fe94c9273" />
 
 # STEP 17 — Add Readiness and Liveness Probes
 
