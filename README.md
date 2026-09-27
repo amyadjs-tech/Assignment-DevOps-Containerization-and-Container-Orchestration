@@ -1694,13 +1694,37 @@ The step 20 is shown in below picture
 
 # STEP 21 — Install Helm Chart
 
-First validate:
+**Step 21 is the deployment step.** Since your chart is in `~/StreamingApp/streamingapp`, run these commands from `~/StreamingApp`.
+
+### 1. Go to the parent directory
+
+```bash
+cd ~/StreamingApp
+```
+
+### 2. Validate the Helm chart
 
 ```bash
 helm lint ./streamingapp
 ```
 
-Then:
+Expected:
+
+```text
+1 chart(s) linted, 0 chart(s) failed
+```
+
+### 3. Before installing, render the templates
+
+I recommend this check because it catches YAML/template problems before creating resources:
+
+```bash
+helm template streamingapp ./streamingapp
+```
+
+If the output looks correct, install it.
+
+### 4. Install the Helm chart
 
 ```bash
 helm install streamingapp ./streamingapp \
@@ -1708,15 +1732,85 @@ helm install streamingapp ./streamingapp \
   --create-namespace
 ```
 
-The assignment specifies `helm install` as the deployment mechanism.
+Expected output will be similar to:
 
-Check:
+```text
+NAME: streamingapp
+NAMESPACE: streaming
+STATUS: deployed
+REVISION: 1
+```
+
+### 5. Check Helm
 
 ```bash
 helm list -n streaming
 ```
 
----
+You should see something like:
+
+```text
+NAME          NAMESPACE   REVISION   STATUS      CHART
+streamingapp  streaming   1          deployed    streamingapp-1.0.0
+```
+
+### 6. Check Kubernetes resources
+
+```bash
+kubectl get all -n streaming
+```
+
+Also check:
+
+```bash
+kubectl get pods -n streaming
+```
+
+and:
+
+```bash
+kubectl get svc -n streaming
+```
+
+### Important: you already have resources in `streaming`
+
+Because you previously deployed the application using `kubectl`, `helm install` can fail with messages such as:
+
+```text
+already exists
+```
+
+if Kubernetes resources with the same names already exist but are **not owned by Helm**.
+
+If that happens, **don't delete anything yet**. Paste the exact `helm install` error here, and we'll handle it safely.
+
+Your intended sequence is:
+
+```text
+helm lint
+    ↓
+helm template
+    ↓
+helm install
+    ↓
+helm list
+    ↓
+kubectl get pods
+    ↓
+kubectl get svc
+```
+
+This is the correct Step 21 flow for your assignment.
+
+<img width="1917" height="957" alt="image" src="https://github.com/user-attachments/assets/977d700b-4cbf-468f-9441-e566a7342d70" />
+
+<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/b43b9dd2-6435-447f-b03b-a3330d3c78cf" />
+
+<img width="1917" height="1025" alt="image" src="https://github.com/user-attachments/assets/bb21aaaa-2ac7-4b4c-8fd5-0a30b7059f8d" />
+
+<img width="1917" height="1022" alt="image" src="https://github.com/user-attachments/assets/20307189-728a-424e-ad57-537752bc6eeb" />
+
+
 
 # STEP 22 — Verify Kubernetes
 
