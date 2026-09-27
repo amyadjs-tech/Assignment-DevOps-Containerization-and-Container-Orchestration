@@ -1771,47 +1771,9 @@ and:
 ```bash
 kubectl get svc -n streaming
 ```
-
-### Important: you already have resources in `streaming`
-
-Because you previously deployed the application using `kubectl`, `helm install` can fail with messages such as:
-
-```text
-already exists
-```
-
-if Kubernetes resources with the same names already exist but are **not owned by Helm**.
-
-If that happens, **don't delete anything yet**. Paste the exact `helm install` error here, and we'll handle it safely.
-
-Your intended sequence is:
-
-```text
-helm lint
-    ↓
-helm template
-    ↓
-helm install
-    ↓
-helm list
-    ↓
-kubectl get pods
-    ↓
-kubectl get svc
-```
-
-This is the correct Step 21 flow for your assignment.
-
 <img width="1917" height="957" alt="image" src="https://github.com/user-attachments/assets/977d700b-4cbf-468f-9441-e566a7342d70" />
 
-<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/b43b9dd2-6435-447f-b03b-a3330d3c78cf" />
-
-<img width="1917" height="1025" alt="image" src="https://github.com/user-attachments/assets/bb21aaaa-2ac7-4b4c-8fd5-0a30b7059f8d" />
-
-<img width="1917" height="1022" alt="image" src="https://github.com/user-attachments/assets/20307189-728a-424e-ad57-537752bc6eeb" />
-
-<img width="1917" height="232" alt="image" src="https://github.com/user-attachments/assets/0b37d582-a9ea-45c3-89ce-ebecb0537dfd" />
-
+<img width="1917" height="1021" alt="image" src="https://github.com/user-attachments/assets/713cd8aa-d717-45b5-9bf4-6b3c913db16e" />
 
 
 # STEP 22 — Verify Kubernetes
