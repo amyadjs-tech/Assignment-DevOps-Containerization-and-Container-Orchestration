@@ -1410,6 +1410,7 @@ auth         ...
 chat         ...
 frontend     ...
 streaming    ...
+
 Step 17.2 — Check the current Deployment YAML
 
 Let's start with auth.
@@ -1423,6 +1424,7 @@ This will show your current configuration.
 You can also save it if needed:
 
 kubectl get deployment auth -n streaming -o yaml > auth-current.yaml
+
 Step 17.3 — Find the application's health endpoint
 
 Before adding:
@@ -1458,6 +1460,10 @@ then we know /health is available.
 
 If there is no health endpoint, don't add a guessed /health probe yet.
 
+The step 17.3 is shown in below pictures
+
+<img width="1917" height="1020" alt="63" src="https://github.com/user-attachments/assets/6d9dc562-a7af-411f-9081-dd73b7e35220" />
+
 Step 17.4 — Check the other services
 
 Run these one by one:
@@ -1470,6 +1476,10 @@ Chat
 grep -RniE "health|healthcheck|/health|/healthz" backend/chatService
 Frontend
 grep -RniE "health|healthcheck|/health|/healthz" frontend
+
+<img width="1917" height="1020" alt="63" src="https://github.com/user-attachments/assets/5393516e-72bd-4518-9195-b2cba5dd4d7f" />
+
+
 Step 17.5 — Understand what we are looking for
 
 Suppose Auth contains:
@@ -1514,7 +1524,9 @@ Pod is running
 YES → keep Pod running
 NO  → Kubernetes restarts container
 
+<img width="1917" height="1027" alt="64" src="https://github.com/user-attachments/assets/f4aa44ba-6844-49ca-9d4d-eb9f8c932fe6" />
 
+<img width="1917" height="1021" alt="65" src="https://github.com/user-attachments/assets/3b4ae761-b42a-473e-bcd4-7717a71dae53" />
 
 # STEP 18 — Create Helm Chart
 
