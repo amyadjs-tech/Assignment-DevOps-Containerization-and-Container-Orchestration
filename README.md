@@ -1595,6 +1595,12 @@ The step-18 is shown in below picture
 
 <img width="1917" height="1022" alt="H-81" src="https://github.com/user-attachments/assets/f3744ce4-52bc-46b8-bea3-bf2d50c9ea67" />
 
+<img width="1917" height="340" alt="H-82" src="https://github.com/user-attachments/assets/6e4d33e6-0b82-48c4-be80-b39142cda62f" />
+
+<img width="1917" height="722" alt="H-83" src="https://github.com/user-attachments/assets/13d753ef-4b35-4a76-887a-696efc55046f" />
+
+<img width="1917" height="516" alt="H-84" src="https://github.com/user-attachments/assets/f26a2353-1701-4e97-9b30-2cf53db378db" />
+
 # STEP 19 — Create values.yaml
 
 Instead of hardcoding values in Kubernetes YAML, we'll put configurable values into:
