@@ -709,53 +709,212 @@ The step-11 is shown in below picture
 
 # STEP 12 — Create Kubernetes Deployments
 
-You need one Deployment for each application service.
+Here you need five Deployments, one for each application service. The assignment guide specifies one Deployment + Service pair for each component. 
+
+Since your ECR account ID is `939365917679`, the five ECR images are:
 
 ```text
-auth-deployment
-streaming-deployment
-admin-deployment
-chat-deployment
-frontend-deployment
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-stream:1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-admin:1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-chat:1.0.0
+939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend:1.0.0
 ```
 
-The assignment specifically requires one Deployment + Service pair per component.
+<img width="1917" height="157" alt="image" src="https://github.com/user-attachments/assets/2e4f2f6e-f871-4b11-9ffa-e79cf4d44711" />
 
-Each Deployment references the corresponding ECR image.
 
-Example:
+## 1. Create a folder
+
+From your `StreamingApp` directory:
+
+```bash
+mkdir -p k8s
+cd k8s
+```
+
+## 2. Create `auth-deployment.yaml`
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: auth
-
+  namespace: streaming
 spec:
   replicas: 2
-
   selector:
     matchLabels:
       app: auth
-
   template:
     metadata:
       labels:
         app: auth
-
     spec:
       containers:
         - name: auth
-          image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
-
+          image: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-auth:1.0.0
           ports:
             - containerPort: 3001
 ```
 
-We'll create the other four in the same way.
+## 3. Create `streaming-deployment.yaml`
 
----
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streaming
+  namespace: streaming
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: streaming
+  template:
+    metadata:
+      labels:
+        app: streaming
+    spec:
+      containers:
+        - name: streaming
+          image: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-stream:1.0.0
+          ports:
+            - containerPort: 3002
+```
+
+## 4. Create `admin-deployment.yaml`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin
+  namespace: streaming
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: admin
+  template:
+    metadata:
+      labels:
+        app: admin
+    spec:
+      containers:
+        - name: admin
+          image: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-admin:1.0.0
+          ports:
+            - containerPort: 3003
+```
+
+## 5. Create `chat-deployment.yaml`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat
+  namespace: streaming
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: chat
+  template:
+    metadata:
+      labels:
+        app: chat
+    spec:
+      containers:
+        - name: chat
+          image: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-chat:1.0.0
+          ports:
+            - containerPort: 3004
+```
+
+## 6. Create `frontend-deployment.yaml`
+
+The frontend image is served through Nginx, so its container port is `80`.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: streaming
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: 939365917679.dkr.ecr.us-east-1.amazonaws.com/streaming-frontend:1.0.0
+          ports:
+            - containerPort: 80
+```
+
+### 7. Check your files
+
+```bash
+ls
+```
+
+You should have:
+
+```text
+auth-deployment.yaml
+streaming-deployment.yaml
+admin-deployment.yaml
+chat-deployment.yaml
+frontend-deployment.yaml
+```
+
+### 8. Apply them
+
+You can apply all five at once:
+
+```bash
+kubectl apply -f . -n streaming
+```
+
+Then check:
+
+```bash
+kubectl get deployments -n streaming
+```
+
+and:
+
+```bash
+kubectl get pods -n streaming
+```
+
+You should eventually see **10 pods** because each Deployment has `replicas: 2`:
+
+```text
+auth          2/2
+streaming     2/2
+admin         2/2
+chat          2/2
+frontend      2/2
+```
+
+The step-12 is shown in below pictures
+
+<img width="1917" height="1022" alt="image" src="https://github.com/user-attachments/assets/5b488d2f-f684-43dd-8a63-e668a37be153" />
+
+<img width="1917" height="1021" alt="image" src="https://github.com/user-attachments/assets/4a3d0b4c-f445-460f-9cf6-b645f5808596" />
+
+<img width="1917" height="905" alt="image" src="https://github.com/user-attachments/assets/74e1de3d-2fad-407d-a337-4b278fa57f3f" />
+
+<img width="1917" height="1022" alt="image" src="https://github.com/user-attachments/assets/32e06506-9a51-4d7d-8d7b-1b5002a27686" />
 
 # STEP 13 — Create Kubernetes Services
 
