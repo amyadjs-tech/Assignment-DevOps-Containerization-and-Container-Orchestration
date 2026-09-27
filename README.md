@@ -1581,7 +1581,19 @@ The step-18 is shown in below picture
 
 <img width="1917" height="1025" alt="image" src="https://github.com/user-attachments/assets/d25f771f-fb4e-4734-9b53-f8d44d8f587d" />
 
+<img width="1917" height="672" alt="H-75" src="https://github.com/user-attachments/assets/d26d12c0-e7bd-45ce-a6e6-7247181e24ec" />
 
+<img width="1917" height="662" alt="H-76" src="https://github.com/user-attachments/assets/0e64b770-3e98-4fc0-a559-0fc631729253" />
+
+<img width="1917" height="696" alt="H-77" src="https://github.com/user-attachments/assets/4ebf8440-148e-46ef-a5be-71eb79678dfb" />
+
+<img width="1917" height="1027" alt="H-78" src="https://github.com/user-attachments/assets/95633c0b-af88-48c4-b4c7-b2fd5419db97" />
+
+<img width="1917" height="1022" alt="H-79" src="https://github.com/user-attachments/assets/006192b6-8718-4cd3-8c2e-6bc1fdd80073" />
+
+<img width="1917" height="1021" alt="H-80" src="https://github.com/user-attachments/assets/39a513f8-c62a-4a1e-a877-ffd9ea550297" />
+
+<img width="1917" height="1022" alt="H-81" src="https://github.com/user-attachments/assets/f3744ce4-52bc-46b8-bea3-bf2d50c9ea67" />
 
 # STEP 19 — Create values.yaml
 
