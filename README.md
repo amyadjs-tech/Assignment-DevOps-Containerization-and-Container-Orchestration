@@ -1684,6 +1684,14 @@ Architecture:
 
 ---
 
+The step 20 is shown in below picture
+
+<img width="1917" height="265" alt="image" src="https://github.com/user-attachments/assets/212f0b75-416a-4c44-b1b0-116d0368f23d" />
+
+<img width="1917" height="1022" alt="I-2" src="https://github.com/user-attachments/assets/c75d8e1d-d071-4f1a-b8ef-9dc89cc00c02" />
+
+<img width="1917" height="170" alt="I-3" src="https://github.com/user-attachments/assets/0e357b1c-ee08-43f9-abf3-1d02213bb7fc" />
+
 # STEP 21 — Install Helm Chart
 
 First validate:
