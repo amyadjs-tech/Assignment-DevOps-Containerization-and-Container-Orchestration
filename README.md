@@ -1075,32 +1075,94 @@ The step-13 is shown in below pictures
 
 # STEP 14 — Create ConfigMap
 
-Non-sensitive configuration goes into ConfigMap.
+Here we need to create a ConfigMap for non-sensitive configuration.** The assignment specifically gives examples such as `PORT`, `CLIENT_URLS`, `AWS_REGION`, and the MongoDB host. 
 
-The assignment mentions values such as:
+Since your namespace is `streaming`, create:
 
 ```text
-PORT
-CLIENT_URLS
-AWS_REGION
-MongoDB host
+k8s/configmap.yaml
 ```
 
-Example:
+### `configmap.yaml`
 
 ```yaml
 apiVersion: v1
 kind: ConfigMap
-
 metadata:
   name: streaming-config
-
+  namespace: streaming
 data:
   AWS_REGION: us-east-1
   MONGO_HOST: mongo
 ```
 
----
+You can create the file:
+
+```bash
+vi configmap.yaml
+```
+
+Paste the YAML, then save:
+
+**Enter Esc button then type :wq then press Enter**
+
+### Apply the ConfigMap
+
+```bash
+kubectl apply -f configmap.yaml
+```
+
+Expected:
+
+```text
+configmap/streaming-config created
+```
+
+### Verify
+
+```bash
+kubectl get configmap -n streaming
+```
+
+You should see:
+
+```text
+NAME               DATA   AGE
+streaming-config   2      ...
+```
+
+To see its contents:
+
+```bash
+kubectl describe configmap streaming-config -n streaming
+```
+
+You should see:
+
+```text
+AWS_REGION:   us-east-1
+MONGO_HOST:   mongo
+```
+
+### Important
+
+Don't put sensitive values such as:
+
+```text
+JWT_SECRET
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+```
+
+in this ConfigMap. The assignment specifically separates non-secret configuration in ConfigMaps from sensitive values in Kubernetes Secrets. 
+
+Also, `MONGO_HOST: mongo` assumes that your MongoDB Kubernetes service will eventually be named **`mongo`**. The detailed guide uses MongoDB as a shared database and allows it to be deployed as a StatefulSet with persistent storage. 
+
+**Next Step 15:** create the Kubernetes **Secret** for the sensitive configuration.
+
+The step-14 is shown in below pictures
+
+<img width="1917" height="767" alt="image" src="https://github.com/user-attachments/assets/0327b661-eccf-4b0b-88e9-00d44acc1a48" />
 
 # STEP 15 — Create Secret
 
